@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 大阪京都行程表</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8fafc;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .timeline-card {
+            position: relative;
+        }
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #38bdf8;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Header -->
+    <header class="gradient-bg text-white py-10 shadow-lg">
+        <div class="container mx-auto px-6 max-w-4xl flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight">✈️ 2026 夏日大阪京都行程表</h1>
+                <p class="text-slate-400 mt-2 text-lg">同行夥伴：大貓、乳酪、我</p>
+            </div>
+            <div class="bg-slate-800/80 backdrop-blur border border-slate-700 rounded-xl px-6 py-4 text-sm flex flex-col gap-1 shadow-inner">
+                <span class="text-slate-400 font-medium">🏨 住宿資訊</span>
+                <span class="text-base font-semibold text-sky-400">voco Osaka Central</span>
+                <span class="text-xs text-slate-500">8/7 - 8/10</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 max-w-4xl space-y-10">
+
+        <!-- Flight Info Box -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col md:flex-row justify-around items-center gap-6">
+            <div class="text-center">
+                <span class="text-xs font-bold tracking-wider text-slate-400 bg-slate-100 px-3 py-1 rounded-full">去程 🛫</span>
+                <div class="mt-3 font-bold text-lg text-slate-700">8/7 (五) BR134</div>
+                <div class="text-sm text-slate-500 mt-1">06:20 TPE ➔ 10:00 UKB (神戶)</div>
+            </div>
+            <div class="hidden md:block w-px h-12 bg-slate-100"></div>
+            <div class="text-center">
+                <span class="text-xs font-bold tracking-wider text-slate-400 bg-slate-100 px-3 py-1 rounded-full">回程 🛬</span>
+                <div class="mt-3 font-bold text-lg text-slate-700">8/11 (二) BR129</div>
+                <div class="text-sm text-slate-500 mt-1">18:30 KIX ➔ 20:30 TPE</div>
+                <div class="text-xs text-amber-600 mt-1">建議 15:30 抵達機場</div>
+            </div>
+        </section>
+
+        <!-- Day 1: 8/6 -->
+        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
+            <div class="bg-slate-50 border-b border-slate-100 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-slate-700 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold">8/6 (四)</span> 
+                    <span>行前準備・住宿</span>
+                </h2>
+                <span class="text-sm font-medium text-slate-500">開車：大貓、乳酪</span>
+            </div>
+            <div class="p-6">
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-4">
+                        <span class="mt-1 bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded text-xs">晚上</span>
+                        <div>
+                            <p class="font-semibold text-slate-700">交通往返與住宿</p>
+                            <p class="text-sm text-slate-500">Holiday Inn Taoyuan Airport (桃園機場假日酒店)</p>
+                            <p class="text-xs text-slate-400 mt-1">準備隔日一早飛機</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Day 2: 8/7 -->
+        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
+            <div class="bg-slate-50 border-b border-slate-100 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-slate-700 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold">8/7 (五)</span> 
+                    <span>神戶入境・前往大阪</span>
+                </h2>
+            </div>
+            <div class="p-6 divide-y divide-slate-100 space-y-4">
+                <div class="flex items-start gap-4 pt-4 first:pt-0">
+                    <span class="mt-1 bg-sky-100 text-sky-700 font-bold px-2 py-0.5 rounded text-xs">早上</span>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-semibold text-slate-700">長榮航空 BR134</p>
+                                <p class="text-sm text-slate-500">TPE ➔ UKB (神戶機場)</p>
+                            </div>
+                            <span class="text-xs text-slate-400 font-medium">06:20 - 10:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 pt-4">
+                    <span class="mt-1 bg-sky-100 text-sky-700 font-bold px-2 py-0.5 rounded text-xs">下午</span>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-semibold text-slate-700">神戶前往大阪 / 辦理入住</p>
+                                <p class="text-sm text-slate-500">入住：voco Osaka Central</p>
+                            </div>
+                            <span class="text-xs text-slate-400 font-medium">10:00 之後</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-1">神戶入境後轉乘至大阪，辦理 Check-in 稍作休息</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 pt-4">
+                    <span class="mt-1 bg-sky-100 text-sky-700 font-bold px-2 py-0.5 rounded text-xs">晚上</span>
+                    <div class="flex-1">
+                        <p class="font-semibold text-slate-700">大阪市區自由活動</p>
+                        <p class="text-xs text-slate-400 mt-1">心齋橋、梅田、通天閣</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3: 8/8 -->
+        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
+            <div class="bg-slate-50 border-b border-slate-100 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-slate-700 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold">8/8 (六)</span> 
+                    <span>海之京都一日遊</span>
+                </h2>
+                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded-full">KLOOK 行程</span>
+            </div>
+            <div class="p-6 divide-y divide-slate-100 space-y-4">
+                <div class="flex items-start gap-4 pt-4 first:pt-0">
+                    <span class="mt-1 bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded text-xs">早上</span>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-semibold text-slate-700">Klook 海之京都一日遊出發</p>
+                                <p class="text-sm text-slate-500">集合地點：日本橋站 2 號出口</p>
+                            </div>
+                            <span class="text-xs text-slate-400 font-medium">07:10 集合</span>
+                        </div>
+                        <p class="text-xs text-rose-600 font-medium mt-1">務必準時抵達！搭乘專車前往海之京都</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 pt-4">
+                    <span class="mt-1 bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded text-xs">下午</span>
+                    <div class="flex-1">
+                        <p class="font-semibold text-slate-700">天橋立、伊根舟屋、丹後鐵道</p>
+                        <p class="text-xs text-slate-400 mt-1">依 Klook 導遊安排，欣賞日本三景與特色舟屋</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 pt-4">
+                    <span class="mt-1 bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded text-xs">晚上</span>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-semibold text-slate-700">返回大阪市區解散</p>
+                                <p class="text-sm text-slate-500">住宿：voco Osaka Central</p>
+                            </div>
+                            <span class="text-xs text-slate-400 font-medium">約 18:00 - 19:00</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-1">市區晚餐後回飯店休息</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4: 8/9 -->
+        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden border-2 border-indigo-500 relative">
+            <span class="absolute top-0 right-4 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-b-lg">🔥 環球影城日</span>
+            <div class="bg-slate-50 border-b border-slate-100 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-slate-700 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold">8/9 (日)</span> 
+                    <span>大阪環球影城 (USJ)</span>
+                </h2>
+            </div>
+            <div class="p-6">
+                <div class="flex items-start gap-4">
+                    <span class="mt-1 bg-rose-100 text-rose-700 font-bold px-2 py-0.5 rounded text-xs">全天</span>
+                    <div class="flex-1">
+                        <p class="font-semibold text-slate-700">大阪環球影城 (USJ)</p>
+                        <p class="text-xs text-slate-500 mt-1">暑假期間週末人潮極多，建議開園前抵達排隊入園！</p>
+                        <p class="text-xs text-slate-400 mt-1">晚上回 voco Osaka Central 休息</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 5: 8/10 -->
+        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
+            <div class="bg-slate-50 border-b border-slate-100 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-slate-700 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold">8/10 (一)</span> 
+                    <span>京都・下鴨神社與嵐山黃金路線</span>
+                </h2>
+            </div>
+            <div class="p-6">
+                <div class="ml-2 pl-6 border-l-2 border-slate-200 space-y-6">
+                    <div class="timeline-card">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">早上 09:30 出發</span>
+                        <p class="font-semibold text-slate-700 mt-2">下鴨神社參拜</p>
+                        <p class="text-sm text-slate-500">預計 11:00 抵達，預留 1.5 小時漫步糾之森與參觀</p>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">下午 14:00 - 14:25</span>
+                        <p class="font-semibold text-slate-700 mt-2">嵐山小火車</p>
+                        <p class="text-sm text-slate-500">嵯峨野遊覽小火車：從嵯峨站至龜岡站，欣賞峽谷風光</p>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">下午 14:35 - 14:45</span>
+                        <p class="font-semibold text-slate-700 mt-2">轉乘接駁巴士</p>
+                        <p class="text-sm text-slate-500">小火車龜岡站 ➔ 保津川遊船乘船處</p>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">下午 15:00 - 17:00</span>
+                        <p class="font-semibold text-slate-700 mt-2">保津川遊船</p>
+                        <p class="text-sm text-slate-500">順流而下返回嵐山站，約兩小時航程</p>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">晚上 17:00 之後</span>
+                        <p class="font-semibold text-slate-700 mt-2">渡月橋散步・返回大阪</p>
+                        <p class="text-sm text-slate-500">下船後於渡月橋周邊稍作停留，返回大阪市區自由活動與晚餐</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 6: 8/11 -->
+        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm overflow-hidden">
+            <div class="bg-slate-50 border-b border-slate-100 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-slate-700 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold">8/11 (二)</span> 
+                    <span>採買與賦歸</span>
+                </h2>
+            </div>
+            <div class="p-6 divide-y divide-slate-100 space-y-4">
+                <div class="flex items-start gap-4 pt-4 first:pt-0">
+                    <span class="mt-1 bg-amber-100 text-amber-700 font-bold px-2 py-0.5 rounded text-xs">早上</span>
+                    <div class="flex-1">
+                        <p class="font-semibold text-slate-700">最後採買</p>
+                        <p class="text-sm text-slate-500">臨空城 Outlet (Rinku Premium Outlets)</p>
+                        <p class="text-xs text-slate-400 mt-1">離關西機場近，適合登機前掃貨</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 pt-4">
+                    <span class="mt-1 bg-amber-100 text-amber-700 font-bold px-2 py-0.5 rounded text-xs">下午</span>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-semibold text-slate-700">長榮航空 BR129</p>
+                                <p class="text-sm text-slate-500">KIX (關西機場) ➔ TPE</p>
+                            </div>
+                            <span class="text-xs text-slate-400 font-medium">18:30 起飛</span>
+                        </div>
+                        <p class="text-xs text-rose-600 font-medium mt-1">建議提早 3 小時 (15:30) 抵達關西機場辦理登機</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-slate-400 border-t border-slate-200 mt-10">
+        <p>祝大家有一趟美好的日本充電之旅！✨</p>
+    </footer>
+
+</body>
+</html>
