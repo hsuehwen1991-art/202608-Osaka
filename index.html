@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大阪自由行行程表</title>
+    <style>
+        /* 基礎全域設定 */
+        body {
+            font-family: 'Helvetica Neue', Arial, 'LiHei Pro', "微軟正黑體", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f7f6;
+        }
+
+        /* 👑 滿版頂部標題設定 */
+        .top-header {
+            width: 100%;
+            background-color: #fff;
+            padding: 20px 30px;
+            box-sizing: border-box;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .top-header h1 { 
+            margin: 0 0 10px 0; 
+            color: #2c3e50; 
+        }
+        
+        .top-header p { 
+            margin: 0; 
+            color: #7f8c8d; 
+        }
+
+        /* 左右佈局設定 (Desktop) */
+        .layout-container {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .left-panel {
+            width: 70%;
+            padding: 30px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+        
+        .right-panel {
+            width: 30%;
+            padding: 30px;
+            background-color: #f9fafb;
+            border-left: 1px solid #e0e0e0;
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            height: 100vh; 
+            overflow-y: auto;
+        }
+
+        /* 日期標題 */
+        .date-header {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 點線時間軸樣式 */
+        .timeline {
+            border-left: 3px dotted #bdc3c7;
+            margin-left: 20px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        /* 水平平行排列 */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            display: flex;          
+            align-items: flex-start;
+            gap: 20px;              
+        }
+
+        /* 時間軸節點 (圓點) */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 15px;
+            width: 12px;
+            height: 12px;
+            background-color: #3498db;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        /* 時間欄位 */
+        .time-section {
+            flex: 0 0 135px; 
+        }
+
+        /* 內容欄位 */
+        .content-section {
+            flex: 1;
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: #e8f4f8;
+            color: #2980b9;
+            padding: 6px 10px;
+            border-radius: 16px;
+            font-size: 0.9em;
+            font-weight: bold;
+            width: 100%;       
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .time-free {
+            background: #f1c40f;
+            color: #fff;
+        }
+
+        /* 餐飲行程可點擊的樣式 */
+        .is-meal {
+            border-left: 2px solid #e74c3c;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .is-meal:hover {
+            background-color: #fdf2f1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.2);
+        }
+        .meal-hint {
+            color: #e74c3c;
+            font-size: 0.85em;
+            margin-top: 8px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .content-title { font-size: 1.1em; font-weight: bold; margin-bottom: 8px;}
+        .route-info { font-size: 0.9em; color: #555; background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 5px; line-height: 1.5;}
+        .note-info { font-size: 0.85em; color: #e67e22; margin-top: 5px; }
+
+        /* 右側餐廳區塊樣式 */
+        .restaurant-block {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .restaurant-block.empty {
+            background: #fdfdfd;
+            border: 1px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            height: 150px;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 150px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .rest-meta { font-size: 0.9em; color: #555; margin: 4px 0; }
+        .rest-meta strong { color: #333; }
+        .status-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .status-yes { background: #d4edda; color: #155724; border: 1px solid #c3e6cb;}
+        .status-no { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;}
+
+        /* 行動裝置響應式設定 (Mobile) */
+        @media (max-width: 768px) {
+            .layout-container {
+                flex-direction: column;
+            }
+            .left-panel, .right-panel {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-left: none;
+            }
+            .right-panel {
+                border-top: 2px solid #e0e0e0;
+            }
+            .timeline-item {
+                flex-direction: column; 
+                gap: 10px;
+            }
+            .time-section {
+                flex: none;
+                width: auto;
+            }
+            .time-badge {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="top-header">
+    <h1>✈️ 大阪自由行行程總表</h1>
+    <p>點擊帶有紅色邊線的「餐飲行程」，即可在右側查看該餐別的餐廳清單。</p>
+</header>
+
+<div class="layout-container">
+    <div class="left-panel">
+        <div id="itinerary-container"></div>
+    </div>
+
+    <div class="right-panel">
+        <h2 id="restaurant-panel-title">🍽️ 餐廳詳細資訊</h2>
+        <p id="restaurant-instruction" style="color:#7f8c8d;">請點擊左側餐飲行程以檢視詳細資訊。</p>
+        <div id="restaurant-container">
+            <div class="restaurant-block empty">區塊 1 </div>
+            <div class="restaurant-block empty">區塊 2</div>
+            <div class="restaurant-block empty">區塊 3</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ==========================================
+    // 💡 雲端資料同步區塊 (使用 gviz API 即時抓取)
+    // ==========================================
+    
+    // 👇 請在此替換為您的 Google 試算表 ID (URL 中 /d/ 後面那串英數字)
+    const SPREADSHEET_ID = '1ZGRymQHMbh5-hNCxJBcxS6VIyKxbOcb4hV-PZh4TXaY'; 
+
+    // 👇 請在此填入您的行程與餐廳「分頁名稱」
+    const SHEET_ITINERARY = '行程總表'; 
+    const SHEET_RESTAURANT = '餐廳列表'; 
+
+    // 使用 Google Visualization API 自動產出 CSV 下載網址，加上 Date.now() 強制即時更新
+    const itineraryCsvUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_ITINERARY)}&t=${Date.now()}`;
+    const restaurantCsvUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_RESTAURANT)}&t=${Date.now()}`;
+
+    let itineraryData = [];
+    let restaurantData = [];
+
+// ==========================================
+    // 🔧 CSV 解析器 (終極防呆強化版)
+    // ==========================================
+    function parseCSVToObjects(text) {
+        let p = '', row = [''], ret = [row], i = 0, r = 0, s = !0, l;
+        for (l of text) {
+            if ('"' === l) {
+                if (s && l === p) row[i] += l;
+                s = !s;
+            } else if (',' === l && s) l = row[++i] = '';
+            else if ('\n' === l && s) {
+                if ('\r' === p) row[i] = row[i].slice(0, -1);
+                row = ret[++r] = [l = '']; i = 0;
+            } else row[i] += l;
+            p = l;
+        }
+        
+        // 🛡️ 防禦 1：移除看不見的 BOM 編碼，並把表頭的空白全部切乾淨
+        const headers = ret[0].map(h => h.replace(/^\uFEFF/, '').trim());
+        const data = [];
+        
+        let lastDate = '';
+        let lastMeal = '';
+
+        for (let j = 1; j < ret.length; j++) {
+            if (ret[j].length === 1 && ret[j][0].trim() === '') continue; 
+            let obj = {};
+            for (let k = 0; k < headers.length; k++) {
+                obj[headers[k]] = ret[j][k] ? ret[j][k].trim() : '';
+            }
+
+            // 🛡️ 防禦 2：【智慧繼承】如果這行的日期或餐別是空的，就去抓上面一行的資料來補！
+            if (obj['日期']) lastDate = obj['日期']; else obj['日期'] = lastDate;
+            if (obj['餐別']) lastMeal = obj['餐別']; else obj['餐別'] = lastMeal;
+
+            data.push(obj);
+        }
+        return data;
+    }
+
+    // ==========================================
+    // 🛡️ 終極防禦：突破 CORS 阻擋的自動備用機制
+    // ==========================================
+    async function fetchWithFallback(url) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error("直連失敗");
+            return await response.text();
+        } catch (error) {
+            const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+            const proxyResponse = await fetch(proxyUrl);
+            if (!proxyResponse.ok) throw new Error("代理連線也失敗");
+            return await proxyResponse.text();
+        }
+    }
+
+    // ==========================================
+    // 🚀 執行抓取
+    // ==========================================
+    async function loadDataAndRender() {
+        const container = document.getElementById('itinerary-container');
+        container.innerHTML = '<p style="color: #3498db; font-weight: bold; margin-left: 20px;">🔄 正在從 Google 試算表同步最新資料，請稍候...</p>';
+
+        try {
+            const [itineraryText, restaurantText] = await Promise.all([
+                fetchWithFallback(itineraryCsvUrl),
+                fetchWithFallback(restaurantCsvUrl)
+            ]);
+
+            itineraryData = parseCSVToObjects(itineraryText);
+            restaurantData = parseCSVToObjects(restaurantText);
+
+            renderItinerary();
+
+        } catch (error) {
+            container.innerHTML = `<div style="background-color: #fdf2f1; padding: 15px; border-radius: 8px; margin: 20px; border-left: 5px solid #e74c3c;">
+                    <h3 style="color: #e74c3c; margin-top: 0;">❌ 資料同步失敗</h3>
+                    <p style="color: #555;">請確認試算表權限已設定為「知道連結的人均可查看」。</p></div>`;
+        }
+    }
+
+    // ... (renderItinerary 保持不變) ...
+
+    // ==========================================
+    // 🍽️ 渲染餐廳列表 (右側)
+    // ==========================================
+    function showRestaurants(date, mealTitle) {
+        let mealType = mealTitle.includes('早') ? '早餐' : 
+                       mealTitle.includes('午') ? '午餐' : 
+                       mealTitle.includes('晚') ? '晚餐' : mealTitle;
+
+        document.getElementById('restaurant-panel-title').innerText = `🍽️ ${date} - ${mealType}`;
+        document.getElementById('restaurant-instruction').style.display = 'none';
+        
+        const container = document.getElementById('restaurant-container');
+        container.innerHTML = '';
+
+        // 🛡️ 防禦 3：抓錯分頁警告機制
+        if (restaurantData.length > 0 && !restaurantData[0].hasOwnProperty('餐廳名稱')) {
+            container.innerHTML = `<div style="color:#721c24; background:#f8d7da; padding:15px; border-radius:8px; border:1px solid #f5c6cb;">
+                ⚠️ <b>抓取錯誤：找不到「餐廳名稱」欄位！</b><br><br>
+                系統抓到的似乎不是餐廳表。請檢查 Google 試算表下方的分頁名稱，必須與 <b>${SHEET_RESTAURANT}</b> 完全一模一樣（請特別注意不能有多餘的空白鍵）。
+            </div>`;
+            return;
+        }
+
+        // 🛡️ 防禦 4：暴力對齊，忽視所有手殘打出來的空白鍵
+        const matched = restaurantData.filter(r => {
+            const rDate = (r['日期'] || '').trim();
+            const rMeal = (r['餐別'] || '').trim();
+            return rDate === date.trim() && rMeal === mealType.trim();
+        });
+
+        for (let i = 0; i < 3; i++) {
+            if (matched[i] && matched[i]['餐廳名稱']) {
+                const rest = matched[i];
+                const mapSearchTerm = `${rest['餐廳名稱']} ${rest['鄰近車站'] || ''}`.trim();
+                const mapQuery = encodeURIComponent(mapSearchTerm);
+                const iframeSrc = `https://maps.google.com/maps?q=${mapQuery}&hl=zh-TW&z=15&output=embed`;
+                
+                let statusBadgeHTML = '-';
+                if (rest['是否完成訂位']) {
+                    if (rest['是否完成訂位'].includes('是') || rest['是否完成訂位'].includes('完成')) {
+                        statusBadgeHTML = `<span class="status-badge status-yes">✅ ${rest['是否完成訂位']}</span>`;
+                    } else if (rest['是否完成訂位'].includes('否') || rest['是否完成訂位'].includes('未')) {
+                        statusBadgeHTML = `<span class="status-badge status-no">⚠️ ${rest['是否完成訂位']}</span>`;
+                    } else {
+                        statusBadgeHTML = rest['是否完成訂位'];
+                    }
+                }
+
+                container.innerHTML += `
+                    <div class="restaurant-block">
+                        <div class="content-title">📍 ${rest['餐廳名稱']}</div>
+                        <div class="rest-meta"><strong>🍽️ 類型：</strong>${rest['餐點類型'] || '-'}</div>
+                        <div class="rest-meta"><strong>📝 預約方式：</strong>${rest['預約類型'] || '-'}</div>
+                        <div class="rest-meta"><strong>🎟️ 訂位狀態：</strong>${statusBadgeHTML}</div>
+                        <div class="rest-meta"><strong>⏰ 訂位時間：</strong>${rest['訂位時間'] || '-'}</div>
+                        <div class="rest-meta"><strong>👥 參加人員：</strong>${rest['參加人員'] || '全體'}</div>
+                        <div class="map-container">
+                            <iframe frameborder="0" src="${iframeSrc}" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML += `<div class="restaurant-block empty">區塊 ${i + 1} 留空 (無安排)</div>`;
+            }
+        }
+        
+        if (window.innerWidth <= 768) {
+             document.querySelector('.right-panel').scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // 網頁載入後，執行抓取資料的非同步函式
+    window.onload = () => {
+        loadDataAndRender();
+    };
+</script>
+</body>
+</html>
